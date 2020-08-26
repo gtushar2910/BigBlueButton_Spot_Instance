@@ -1,0 +1,8 @@
+subnet_prefix = "10.0.1.0/24"
+ami = "ami-05e16100b6f337dda"
+region1 = "us-east-1a" 
+key_name = "Wordpress-aws1"
+private_ip_instance = "10.0.1.50"
+url = "bbb1.triple5.in"
+hosted_zone_id = "Z02138043I9MHD337OR5"
+email = "scet.moodle@gmail.com"
