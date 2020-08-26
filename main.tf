@@ -2,10 +2,9 @@
 
 provider "aws" {
    region  = "us-east-1"
-   access_key = "AKIAIRC2O2TSBAYRGA3A"
-   secret_key = "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"
+   access_key =  file("secret_data.txt")
+   secret_key =  file("secret_access_data.txt")
 }
-
 
 resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
@@ -140,6 +139,7 @@ data "template_file" "script" {
 }
 
 resource "aws_spot_instance_request" "BBBServer-Spot" {
+
   ami           = var.ami
   instance_type = "c5.xlarge"
   availability_zone = "us-east-1a"
