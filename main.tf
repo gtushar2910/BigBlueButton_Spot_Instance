@@ -1,34 +1,4 @@
-variable "subnet_prefix"{
-  description = "cidr block for subnet"
-}
 
-variable "hosted_zone_id"{
-  description = "DNS Zone"
-}
-
-variable "ami"{
-  description = "image id"
-}
-
-variable "region1"{
-  description = "default region"
-}
-
-variable "key_name"{
-  description = "SSH Key"
-}
-
-variable "email"{
-  description = "email"
-}
-
-variable "private_ip_instance"{
-  description = "Private IP of the Instance"
-}
-
-variable "url"{
-  description = "URL"
-}
 
 provider "aws" {
    region  = "us-east-1"
@@ -159,7 +129,6 @@ resource "aws_eip" "one" {
   depends_on = [aws_internet_gateway.gw]
 }
 
-
 data "template_file" "script" {
   template = "${file("script.tpl")}"
   vars = {
@@ -170,12 +139,15 @@ data "template_file" "script" {
   }
 }
 
-
-resource "aws_instance" "web-server-instance" {
+resource "aws_spot_instance_request" "BBBServer-Spot" {
   ami           = var.ami
   instance_type = "c5.xlarge"
   availability_zone = "us-east-1a"
   key_name = var.key_name
+  spot_price                      = "0.5"
+  wait_for_fulfillment            = "true"
+  spot_type                       = "one-time"
+  instance_interruption_behaviour = "terminate"
 
   network_interface {
     device_index = 0
@@ -187,9 +159,7 @@ resource "aws_instance" "web-server-instance" {
        tags = {
       Name = "BigBlueButton_Server"
     }
-
-}
-
+    }
 
 resource "aws_route53_record" "bbb" {
   zone_id = var.hosted_zone_id
@@ -200,6 +170,4 @@ resource "aws_route53_record" "bbb" {
 }
 
 
-output "server_public_ip" {
-  value = aws_eip.one.public_ip
-}
+
