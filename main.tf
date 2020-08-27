@@ -39,7 +39,7 @@ resource "aws_route_table" "prod-route-table" {
 resource "aws_subnet" "subnet-1" {
   vpc_id = aws_vpc.prod-vpc.id
   cidr_block = var.subnet_prefix
-  availability_zone = "us-east-1a"
+  availability_zone = var.availability_zone
   tags = {
     "Name" = "prod-subnet"
   }
@@ -143,9 +143,9 @@ resource "aws_spot_instance_request" "BBBServer-Spot" {
 
   ami           = var.ami
   instance_type = var.instance_type
-  availability_zone = "us-east-1a"
+  availability_zone = var.availability_zone
   key_name = var.key_name
-  spot_price                      = "0.5"
+  spot_price                      = var.spot_price
   wait_for_fulfillment            = "true"
   spot_type                       = "one-time"
   instance_interruption_behaviour = "terminate"

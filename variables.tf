@@ -34,3 +34,11 @@ variable "instance_type"{
   description = "Type of the Instance"
 }
 
+variable availability_zone{
+  description = "Availibility Zone"
+}
+
+variable spot_price{
+  description = "Spot Price"
+}
+
