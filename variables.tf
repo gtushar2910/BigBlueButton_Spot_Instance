@@ -30,3 +30,7 @@ variable "url"{
   description = "URL"
 }
 
+variable "instance_type"{
+  description = "Type of the Instance"
+}
+

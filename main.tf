@@ -135,13 +135,14 @@ data "template_file" "script" {
     elasticip = aws_eip.one.public_ip
     url = var.url
     email = var.email
+    shared_secret = file("shared_secret.txt")
   }
 }
 
 resource "aws_spot_instance_request" "BBBServer-Spot" {
 
   ami           = var.ami
-  instance_type = "c5.xlarge"
+  instance_type = var.instance_type
   availability_zone = "us-east-1a"
   key_name = var.key_name
   spot_price                      = "0.5"
