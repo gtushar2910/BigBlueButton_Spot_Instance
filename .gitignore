@@ -3,3 +3,5 @@
 /secret_data.txt
 /secret_access_data.txt
 /shared_secret.txt
+/terraform.tfstate
+/terraform.tfstate.backup
