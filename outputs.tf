@@ -1,3 +1,3 @@
-output "server_public_ip" {
-  value = aws_eip.one.public_ip
+output "eip_publicip" {
+  value = module.myeip.eip_publicip
 }
