@@ -1,4 +1,7 @@
 
+variable region {
+    description = "Region"
+}
 
 variable elasticip{
     description = "Elastic IP"
@@ -7,6 +10,11 @@ variable elasticip{
 variable url{
     description = "URL"
 }
+
+variable email{
+    description = "email"
+}
+
 variable ami{
     description = "Ami"
 }
@@ -32,6 +40,3 @@ variable zone_id{
     description = "zone id"
 }
 
-variable userdata{
-    description = "User Data"
-}

@@ -1,4 +1,13 @@
-
+data "template_file" "script" {
+  template = "${file("script.tpl")}"
+  vars = {
+    region        = var.region
+    elasticip     = var.elasticip
+    url           = var.url
+    email         = var.email
+    shared_secret = file("shared_secret.txt")
+  }
+}
 
 resource "aws_instance" "BBBServer" {
 
@@ -13,7 +22,7 @@ resource "aws_instance" "BBBServer" {
     network_interface_id = var.nic_id
   }
 
-  user_data = var.userdata
+  user_data = data.template_file.script.rendered
 
   tags = {
     Name = "BigBlueButton_Server"

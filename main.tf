@@ -39,29 +39,20 @@ module "myeip" {
 } */
 
 
-data "template_file" "script" {
-  template = "${file("script.tpl")}"
-  vars = {
-    region        = var.region1
-    elasticip     = module.myeip.eip_publicip
-    url           = var.url
-    email         = var.email
-    shared_secret = file("shared_secret.txt")
-  }
-}
 
 module "mybbbnormalinstancewithdns" {
   source = "./modules/normalinstance53"
   elasticip = module.myeip.eip_publicip
   url = var.url
- 
+  email = var.email
+  region = var.region1
   ami                             = var.ami
   instance_type                   = var.instance_type
   availability_zone               = var.availability_zone
   key_name                        = var.key_name
   nic_id = module.myeip.nw_interface_id
   zone_id = var.hosted_zone_id
-  userdata = data.template_file.script.rendered
+  
 }
 
 
