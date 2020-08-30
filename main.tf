@@ -22,7 +22,7 @@ module "myeip" {
   gateway = module.myvpc.gateway
 }
 
-/* module "mybbbspotinstancewithdns" {
+module "mybbbspotinstancewithdns" {
   source = "./modules/spotinstance53"
 
   region = var.region1
@@ -30,17 +30,17 @@ module "myeip" {
   url = var.url
   email = var.email
   ami                             = var.ami
-  instance_type                   = var.instance_type
+  instance_type                   = var.bbb_spot_instance_type
   availability_zone               = var.availability_zone
   key_name                        = var.key_name
-  spot_price                      = var.spot_price
+  spot_price                      = var.bbb_spot_price
   nic_id = module.myeip.nw_interface_id
   zone_id = var.hosted_zone_id
-} */
+}
 
 
 
-module "mybbbnormalinstancewithdns" {
+/* module "mybbbnormalinstancewithdns" {
   source = "./modules/normalinstance53"
   elasticip = module.myeip.eip_publicip
   url = var.url
@@ -52,7 +52,6 @@ module "mybbbnormalinstancewithdns" {
   key_name                        = var.key_name
   nic_id = module.myeip.nw_interface_id
   zone_id = var.hosted_zone_id
-  
-}
+} */
 
 

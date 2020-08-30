@@ -38,7 +38,10 @@ variable availability_zone{
   description = "Availibility Zone"
 }
 
-variable spot_price{
-  description = "Spot Price"
+variable bbb_spot_price{
+  description = "BBB Spot Price"
 }
 
+variable bbb_spot_instance_type{
+  description = "BBB Spot Instance Type"
+}
