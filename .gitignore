@@ -3,4 +3,9 @@
 /secret_data.txt
 /secret_access_data.txt
 /shared_secret.txt
+<<<<<<< HEAD
 terraform.tfvars
+=======
+/terraform.tfstate
+/terraform.tfstate.backup
+>>>>>>> 65e80afdf06d775c9cb902fa456ea795d34b681f
