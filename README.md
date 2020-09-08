@@ -12,13 +12,6 @@ Adjust configurations:
 
 - [`vars/variables.tfvars`](vars/variables.tfvars)
 
-## Infrastructure
-
-Infrastructure creation is done in multiple steps:
-
-1. Bootstrapping - creating shared resources, like security groups and SSH keys.
-2. Provisioning - creating actual bigbluebutton and scalelite servers
-
 ### Provisionin
 
 Initiate a new Terraform project 
@@ -35,9 +28,11 @@ terraform apply -var-file=../vars/variables.tfvars
 
 ## Post-Install
 
-Post installation configuration is still pretty much manual. You will need to refer to [scalelite official docs](https://github.com/blindsidenetworks/scalelite#administration) to learn more how to administer your pool.
+It will take about 15 minutes to complete the installation of BigBlueButton Server. Once the BigBlueButton Server is installaed, you can access it via the URL that you have provided in the variables.tfvars file (i.e. bbb.example.com in this case).
 
-In case you need to destroy the resources, the process is similar for both [`bootstrap`](bootstrap) and [`template`](template):
+## Remove
+
+In case you need to destroy the resources, the process is like this :
 
 ```sh
 terraform destroy --auto-approve -var-file=../vars/variables.tfvars
